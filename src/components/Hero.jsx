@@ -1,14 +1,25 @@
+import { useEffect, useState } from 'react'
 import Spline from '@splinetool/react-spline'
 
 export default function Hero() {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <section className="relative">
       <div className="relative h-[520px] rounded-3xl overflow-hidden border border-slate-200/60">
         <div className="absolute inset-0">
-          <Spline
-            scene="https://prod.spline.design/1Y0s1z5mB1m5Q1b2/scene.splinecode"
-            style={{ width: '100%', height: '100%' }}
-          />
+          {isClient ? (
+            <Spline
+              scene="https://prod.spline.design/1Y0s1z5mB1m5Q1b2/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-violet-200 via-blue-200 to-rose-200" />
+          )}
         </div>
         <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/40 to-white/10 pointer-events-none" />
         <div className="relative z-10 h-full flex items-center px-6 sm:px-10">
